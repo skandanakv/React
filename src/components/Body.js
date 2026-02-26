@@ -13,14 +13,22 @@ const Body=()=>{
 
 const fetchData = async () => {
     const data = await fetch(
-        "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
+        "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.97530&lng=77.59100&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
-    
-    const restaurantList = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setRestaurants(restaurantList || []);
-    setFilteredRestaurants(restaurantList || []);
+
+    const unique = [
+        ...new Map(
+            [
+                ...(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []),
+                ...(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [])
+            ].map((res) => [res.info.id, res])
+        ).values()
+    ];
+
+    setRestaurants(unique);
+    setFilteredRestaurants(unique);
 };
 
 if(restaurants.length===0){
