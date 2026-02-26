@@ -1,6 +1,224 @@
-#title{
-    color:blue;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: cursive;
+/* =========================
+   RESET + GLOBAL
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+.nav-item ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-item li {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-item li:hover {
+  color: #ff6b35;
+}
+
+
+/* =========================
+   BODY LAYOUT
+========================= */
+.body {
+  padding: 20px 40px;
+}
+
+
+/* =========================
+   SEARCH + FILTER CONTROLS
+========================= */
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+/* Search input */
+#search-input {
+  width: 300px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 5px rgba(255, 102, 0, 0.4);
+}
+
+/* Buttons shared logic */
+#search-btn,
+#filter-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+
+/* Search button */
+#search-btn {
+  border: none;
+  background: linear-gradient(135deg, #ff6600, #ff8c42);
+  color: white;
+}
+
+#search-btn:hover {
+  background: linear-gradient(135deg, #e65c00, #ff6a00);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+#search-btn:active {
+  transform: scale(0.95);
+}
+
+
+/* Filter button */
+#filter-btn {
+  border: 2px solid #ff6600;
+  background-color: white;
+  color: #ff6600;
+}
+
+#filter-btn:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+
+/* =========================
+   RESTAURANT GRID
+========================= */
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+
+/* =========================
+   RESTAURANT CARD
+========================= */
+.res-card {
+  width: 240px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.res-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+/* Card text */
+.res-card h3 {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.res-card h4 {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+
+/* =========================
+   SHIMMER UI
+========================= */
+.shimmer-card {
+  width: 240px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fff;
+}
+
+.shimmer-img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.shimmer-text {
+  height: 16px;
+  margin-top: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.shimmer-text.small {
+  height: 13px;
+  width: 70%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+#login-btn {
+  font-size: 16px;
+  cursor: pointer;
 }
