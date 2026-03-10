@@ -17,7 +17,7 @@ componentDidMount(){
         // console.log(" Parent Render called");
         return (
             <div id="about">
-                <h3>About the ap that i'm building!!</h3>
+                
                 <UserClass name={ "Skandana (class) "} location={"Bengaluru"}/>
             </div>
         )

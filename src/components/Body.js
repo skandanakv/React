@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import{useEffect, useState} from "react";
 import ShimmerUI from "./ShimmerUI"
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body=()=>{
     const [restaurants, setRestaurants] =useState([]);
@@ -11,6 +12,13 @@ const Body=()=>{
     useEffect(() => {
         fetchData();
 }, []);
+
+const onlineStatus = useOnlineStatus();
+
+if (onlineStatus === false) {
+  return <h1>Offline, check your internet connection!!</h1>;
+}
+
 
 //swiggys real api data
 
