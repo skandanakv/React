@@ -54,13 +54,13 @@ const RestaurantCard = (props) => {
   } = resData?.info || resData;
 
   return (
-    <div className="res-card">
+    <div className="border border-gray-300 rounded-lg p-4 hover:bg-gray-50 shadow-lg bg-gray-50transition">
       <img
         className="card-img"
         src={CDN_FALLBACK}
         alt={name}
       />
-      <h3>{name}</h3>
+      <h3 className="font-bold px-1 py-0.5">{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>
         {avgRatingString ?? avgRating} ⭐ · {totalRatingsString}

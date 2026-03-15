@@ -64,51 +64,67 @@ if(restaurants.length===0){
 
 
     return (
-    <div  className="body">
-
-<div id="search-container">
-            <input type="text" placeholder="Search" id="search-input" value={searchText}
-            onChange={(e) => {
-                    setSearchText(e.target.value);
-                }   
-            }/>
-            <button id="search-btn" 
-          onClick={() => {
-            const searchList = restaurants.filter(
-                (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredRestaurants(searchList);
-        }}
-        
-            >Search</button>
-        </div>
-
-
-        <div className="filter">
-            <button id="filter-btn" onClick={() => {
-                const filteredList=restaurants.filter(
-                    (res) => res.info.avgRating > 4
+        <div className="max-w-7xl mx-auto px-4 py-6">
+      
+          {/* Search + Filter Row */}
+          <div className="flex items-center mb-6">
+      
+            {/* Search Section */}
+            <div className="flex gap-4">
+              <input
+                type="text"
+                placeholder="Search"
+                className="border border-gray-300 px-4 py-2 rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+              />
+      
+              <button
+                className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition"
+                onClick={() => {
+                  const searchList = restaurants.filter((res) =>
+                    res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                  );
+                  setFilteredRestaurants(searchList);
+                }}
+              >
+                Search
+              </button>
+            </div>
+      
+            {/* Filter Button */}
+            <button
+              className="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-200 transition ml-auto"
+              onClick={() => {
+                const filteredList = restaurants.filter(
+                  (res) => res.info.avgRating > 4
                 );
                 setFilteredRestaurants(filteredList);
-
-            }}>Filter Top Rated Restaurants</button>
+              }}
+            >
+              Filter Top Rated Restaurants
+            </button>
+      
+          </div>
+      
+          {/* Restaurant Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredRestaurants.map((restaurant) => (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurant/" + restaurant.info.id}
+                className="block"
+              >
+                <RestaurantCard resData={restaurant.info} />
+              </Link>
+            ))}
+          </div>
+      
         </div>
-
-       
-
-    
-
-    <div className="res-container">
-    {filteredRestaurants.map((restaurant) => (
-  <Link key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id} style={{ textDecoration: "none", color: "inherit" }}>
-    <RestaurantCard resData={restaurant.info} />
-  </Link>
-))}
-
-    </div>
-    </div>
-
-    )
+      );
+      
 };
 
 

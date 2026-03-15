@@ -16,7 +16,7 @@ componentDidMount(){
     render(){
         // console.log(" Parent Render called");
         return (
-            <div id="about">
+            <div id="flash">
                 
                 <UserClass name={ "Skandana (class) "} location={"Bengaluru"}/>
             </div>

@@ -6,39 +6,67 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
 
   const [BtnName, setBtnName] =useState("Login");
-  const onlineStaus=useOnlineStatus();
+  const onlineStatus=useOnlineStatus();
 
-    return (
-      <div className="Header">
-        <div className="logo-container">
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              className="logo"
-              src={LOGO_URL}
-              style={{ display: "inline-block", marginRight: "10px" }}
-              alt="logo"
-            />
-            <h1 style={{ display: "inline-block", margin: 0 }}>
-              Food Web
-            </h1>
-          </div>
-        </div>
-  
-        <div className="nav-item">
-          <ul>
-            <li>Online Status: {onlineStaus ? "✅" : "🔴"}</li>
-            <li> <Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/grocery">Grocery</Link></li>
-            <li>Cart</li>
-            <button id="login-btn" onClick={()=> {
-               BtnName==="Login" ? setBtnName("Logout") : setBtnName("Login");
-            }}>{BtnName}</button>
-          </ul>
-        </div>
+      return (
+    <div className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+
+      {/* Logo Section */}
+      <div className="flex items-center gap-3">
+        <img
+          className="w-24 h-20 rounded-full"
+          src={LOGO_URL}
+          alt="logo"
+        />
+        <h1 className="text-2xl font-bold text-orange-500">
+          Food Web
+        </h1>
       </div>
-    );
+
+      {/* Navigation */}
+      <div>
+        <ul className="flex items-center gap-8 text-lg font-medium">
+
+          <li>
+            Online Status: {onlineStatus ? "✅" : "🔴"}
+          </li>
+
+          <li className="hover:text-orange-500 transition">
+            <Link to="/">Home</Link>
+          </li>
+
+          <li className="hover:text-orange-500 transition">
+            <Link to="/about">About Us</Link>
+          </li>
+
+          <li className="hover:text-orange-500 transition">
+            <Link to="/contact">Contact Us</Link>
+          </li>
+
+          <li className="hover:text-orange-500 transition">
+            <Link to="/grocery">Grocery</Link>
+          </li>
+
+          <li className="hover:text-orange-500 transition">
+            Cart
+          </li>
+
+          <button
+            className="bg-orange-500 text-white px-4 py-1 rounded-md hover:bg-orange-600 transition"
+            onClick={() => {
+              BtnName === "Login"
+                ? setBtnName("Logout")
+                : setBtnName("Login");
+            }}
+          >
+            {BtnName}
+          </button>
+
+        </ul>
+      </div>
+
+    </div>
+  );
   };
   
   export default Header;  
