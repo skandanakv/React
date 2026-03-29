@@ -4,8 +4,6 @@ import ShimmerUI from "./ShimmerUI";
 import { CDN_FALLBACK } from "../utils/constants";
 import useRestaurantInfo from "../utils/useRestaurantInfo";
 
-const MENU_TYPE = "type.googleapis.com/swiggy.presentation";
-
 const styles = {
   menu: { maxWidth: "800px", margin: "0 auto", padding: "20px" },
   category: { margin: "20px 0" },
@@ -42,28 +40,12 @@ const styles = {
 };
 
 const RestaurantMenu = () => {
-  // const { restaurantId } = useParams();
-  // const [resInfo, setResInfo] = useState(null);
-
-  const [menuCategories, setMenuCategories] = useState([]);
-
   const { restaurantId } = useParams();
 
-  // Using custom hook instead of fetch here
   const resInfo = useRestaurantInfo(restaurantId);
 
-  // const fetchData = async () => {
-  //   const data = await fetch(`https://namastedev.com/api/v1/listRestaurantMenu/${restaurantId}`);
-  //   const json = await data.json();
-  //   console.log("full json:", json);
-  //   console.log("json.data:", json?.data);
-  //   console.log("cards:", json?.data?.cards);
-  //   setResInfo(json.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const [menuCategories, setMenuCategories] = useState([]);
+  const [openIndex, setOpenIndex] = useState(null); // 🔥 accordion state
 
   useEffect(() => {
     if (!resInfo) return;
@@ -73,7 +55,11 @@ const RestaurantMenu = () => {
 
     const categories = cards
       .map((x) => x?.card?.card)
-      .filter((x) => x?.["@type"] === MENU_TYPE || x?.itemCards);
+      .filter(
+        (x) =>
+          x?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
 
     setMenuCategories(categories);
   }, [resInfo]);
@@ -99,31 +85,55 @@ const RestaurantMenu = () => {
 
       {menuCategories.map((category, index) => (
         <div key={index} style={styles.category}>
-          <h3>
-            {category?.title} ({category?.itemCards?.length})
-          </h3>
+          
+          {/* 🔽 Category Header (Accordion Toggle) */}
+          <div
+            className="flex justify-between items-center cursor-pointer bg-gray-100 px-4 py-3 rounded-md hover:bg-gray-200 transition"
+            onClick={() =>
+              setOpenIndex(openIndex === index ? null : index)
+            }
+          >
+            <h3 className="font-semibold">
+              {category?.title} ({category?.itemCards?.length})
+            </h3>
+            <span>{openIndex === index ? "🔼" : "🔽"}</span>
+          </div>
 
-          {category?.itemCards?.map((item) => {
-            const { id, name, description, price, defaultPrice } =
-              item?.card?.info;
+          {/* 🔽 Accordion Content */}
+          {openIndex === index && (
+            <div className="mt-3">
+              {category?.itemCards?.map((item) => {
+                const {
+                  id,
+                  name,
+                  description,
+                  price,
+                  defaultPrice,
+                } = item?.card?.info;
 
-            return (
-              <div key={id} style={styles.item}>
-                <div>
-                  <h4 style={styles.name}>{name}</h4>
-                  <p style={styles.price}>
-                    ₹{((price || defaultPrice) / 100).toFixed(2)}
-                  </p>
-                  <p style={styles.desc}>{description}</p>
-                </div>
+                return (
+                  <div key={id} style={styles.item}>
+                    <div>
+                      <h4 style={styles.name}>{name}</h4>
+                      <p style={styles.price}>
+                        ₹{((price || defaultPrice) / 100).toFixed(2)}
+                      </p>
+                      <p style={styles.desc}>{description}</p>
+                    </div>
 
-                <div style={styles.imgWrapper}>
-                  <img style={styles.img} src={CDN_FALLBACK} alt={name} />
-                  <button style={styles.btn}>ADD +</button>
-                </div>
-              </div>
-            );
-          })}
+                    <div style={styles.imgWrapper}>
+                      <img
+                        style={styles.img}
+                        src={CDN_FALLBACK}
+                        alt={name}
+                      />
+                      <button style={styles.btn}>ADD +</button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       ))}
     </div>
