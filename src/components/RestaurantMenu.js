@@ -45,7 +45,7 @@ const RestaurantMenu = () => {
   const resInfo = useRestaurantInfo(restaurantId);
 
   const [menuCategories, setMenuCategories] = useState([]);
-  const [openIndex, setOpenIndex] = useState(null); // 🔥 accordion state
+  const [openIndex, setOpenIndex] = useState(null); // accordion state
 
   useEffect(() => {
     if (!resInfo) return;
