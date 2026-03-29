@@ -1,12 +1,8 @@
-# 🚀 Learning React via Namaste React
+# 🚀 Learning React 
 
 
 
 ---
 
-## 📌 Author
-
-**Skandana KV**
-Aspiring Full Stack Developer | Information Science Engineering
 
 
