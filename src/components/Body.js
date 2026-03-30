@@ -50,12 +50,12 @@ if (onlineStatus === false) {
 const fetchData = async () => {
     const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
     const json = await data.json();
-    console.log(json);
+    
 
     const restaurants =
         json?.data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
-    console.log("restaurants found:", restaurants.length);
+    
 
     setRestaurants(restaurants);
     setFilteredRestaurants(restaurants);
