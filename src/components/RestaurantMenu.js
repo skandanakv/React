@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
 import { CDN_FALLBACK } from "../utils/constants";
 import useRestaurantInfo from "../utils/useRestaurantInfo";
+const { useDispatch } = require("react-redux");
+import { addItem } from "../utils/cartSlice";
 
 const styles = {
   menu: { maxWidth: "800px", margin: "0 auto", padding: "20px" },
@@ -46,6 +48,15 @@ const RestaurantMenu = () => {
 
   const [menuCategories, setMenuCategories] = useState([]);
   const [openIndex, setOpenIndex] = useState(null); // accordion state
+
+  const dispatch=useDispatch();
+
+  const handleAdd =(category)=>{
+    console.log("adding to cart:", category);
+    dispatch(addItem(category));
+    
+  }
+
 
   useEffect(() => {
     if (!resInfo) return;
@@ -127,7 +138,7 @@ const RestaurantMenu = () => {
                         src={CDN_FALLBACK}
                         alt={name}
                       />
-                      <button style={styles.btn}>ADD +</button>
+                      <button style={styles.btn} onClick={()=>handleAdd(category)}>ADD +</button>
                     </div>
                   </div>
                 );
