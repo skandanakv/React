@@ -57,7 +57,9 @@ const Header = () => {
           </li>
 
           <li className="hover:text-orange-500 transition">
+            <Link to="/cart">
             Cart-{cartItems.length}
+            </Link>
           </li>
 
           <button

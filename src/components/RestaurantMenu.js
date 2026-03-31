@@ -51,9 +51,9 @@ const RestaurantMenu = () => {
 
   const dispatch=useDispatch();
 
-  const handleAdd =(category)=>{
-    console.log("adding to cart:", category);
-    dispatch(addItem(category));
+  const handleAdd =(item)=>{
+    console.log("adding to cart:", item);
+    dispatch(addItem(item));
     
   }
 
@@ -138,7 +138,7 @@ const RestaurantMenu = () => {
                         src={CDN_FALLBACK}
                         alt={name}
                       />
-                      <button style={styles.btn} onClick={()=>handleAdd(category)}>ADD +</button>
+                      <button style={styles.btn} onClick={()=>handleAdd(item.card.info)}>ADD +</button>
                     </div>
                   </div>
                 );
