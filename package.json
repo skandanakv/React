@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "test": "js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,16 @@
     "react-router-dom": "^6.30.3",
     "tailwindcss": "^4.2.1"
   },
-  "browserlist": [
+  "browserslist": [
     "last 2 versions"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "babel-jest": "^30.3.0",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0"
+  }
 }
