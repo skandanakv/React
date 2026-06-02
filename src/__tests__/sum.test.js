@@ -1,5 +1,5 @@
 import {sum} from "../sum.js";
 
 test (" sum test", ()=>{
-    expect(sum(1,2)).toBe(5)
+    expect(sum(1,2)).toBe(3)
 })
