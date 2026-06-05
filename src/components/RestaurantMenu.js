@@ -123,7 +123,7 @@ const RestaurantMenu = () => {
                 } = item?.card?.info;
 
                 return (
-                  <div key={id} style={styles.item}>
+                  <div key={id} style={styles.item} data-testid="menu-item">
                     <div>
                       <h4 style={styles.name}>{name}</h4>
                       <p style={styles.price}>

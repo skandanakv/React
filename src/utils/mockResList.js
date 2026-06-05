@@ -1,4 +1,4 @@
-const mockResList = {
+export const mockResList = {
     status: true,
     message: "Restaurant List fetched successfully",
     data: {
